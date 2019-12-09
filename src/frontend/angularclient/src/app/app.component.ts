@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {RestapiService} from "./service/restapi.service";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,17 @@ import {HttpClient} from "@angular/common/http";
 })
 export class AppComponent {
   title = 'juice_game';
-  data: Object = {'id': 'qwe', 'message': 'Hello World'};
-  constructor(private http: HttpClient) {
-    http.get('http://localhost:8080/home').subscribe(data => this.data = data);
+  data:  {'id': 'qwe', 'message': 'Hello World'};
+
+  constructor(private restapiService: RestapiService,
+              private http: HttpClient,
+              private router: Router) {
+    //this.restapiService.authenticate(undefined, undefined);
   }
+  // logout() {
+  //   this.http.post('http://localhost:8080/logout', {}).subscribe(() => {
+  //     this.restapiService.authenticated = false;
+  //     this.router.navigateByUrl('/login');
+  //   });
+  // }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {RestapiService} from "../service/restapi.service";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  title = 'Juice_game';
+  greeting = {};
 
-  ngOnInit() {
+  constructor(private restapiService: RestapiService, private http: HttpClient) {
+    http.get('http://localhost:8080/home').subscribe(data => this.greeting = data);
   }
 
+  //authenticated() { return this.loginService.authenticated; }
+
+  ngOnInit() {}
 }

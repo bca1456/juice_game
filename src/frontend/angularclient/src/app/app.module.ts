@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 
-import { HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -11,6 +11,7 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import bootstrap from "bootstrap";
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import {RestapiService} from "./service/restapi.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [RestapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

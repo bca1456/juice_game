@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RestapiService} from "../service/restapi.service";
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  userName: string;
+  password: string;
 
-  ngOnInit() {
+  constructor(private restapiService: RestapiService) {
+  }
+
+  doLogin(){
+    let response = this.restapiService.login(this.userName, this.password);
+    response.subscribe(data=>{
+      console.log(data);
+    })
+  }
+
+  ngOnInit(): void {
   }
 
 }

@@ -12,12 +12,12 @@ public class JuiceGameApplication {
         SpringApplication.run(JuiceGameApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner init() {
-        return args -> {
-            System.out.println("sdfsdfsdfsdfdsfsdf");
-            System.out.println("sdfsdfsdfsdfwddds fsdf");
-        };
-    }
+//    @Bean
+//    CommandLineRunner init() {
+//        return args -> {
+//            System.out.println("sdfsdfsdfsdfdsfsdf");
+//            System.out.println("sdfsdfsdfsdfwddds fsdf");
+//        };
+//    }
 
 }
