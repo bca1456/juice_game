@@ -1,9 +1,18 @@
 package com.juice_game.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
+import java.util.Arrays;
 
 //@Configuration
 //
@@ -35,18 +44,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 //
 //    }
 
+@EnableWebSecurity
 @Configuration
 class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        System.out.println("hui");
         http.cors();
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/index", "/", "/home", "/login")
+                .authorizeRequests().antMatchers("/**")
                 .fullyAuthenticated()
                 .and()
-//                .logout()
-//                .and()
-                .httpBasic();
+                .formLogin()
+                ;
     }
 
     @Override
@@ -55,5 +65,17 @@ class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("u")
                 .password("{noop}p").roles("USER");
     }
+
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        String corsAllowedOrigin = "http://localhost:8080";
+//        configuration.addAllowedOrigin(corsAllowedOrigin);
+//        configuration.addAllowedHeader("*");
+//        configuration.addAllowedMethod("*");
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 }
 

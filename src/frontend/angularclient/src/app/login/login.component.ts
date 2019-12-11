@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
 
   doLogin(){
     let response = this.restapiService.login(this.userName, this.password);
+    console.log("===login.component====");
+    console.log(this.userName);
+    console.log(this.password);
+    console.log("===login.component====");
     response.subscribe(data=>{
       console.log(data);
     })

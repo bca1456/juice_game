@@ -1,9 +1,7 @@
 package com.juice_game.controller;
 
-import com.juice_game.domain.User;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Base64;
 import java.util.HashMap;
@@ -11,11 +9,12 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController //убирает необходимость юзать @ResponseBody
-@CrossOrigin(origins="http://localhost:4200") //разрешаем все источники
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true") //разрешаем все источники
 public class UserController {
 
     @GetMapping("/") //задаем методам адреса, па которым они будут доступны на фронте
     public String login() {
+        System.out.println("123321");
         return "auth succesful";
     }
 
