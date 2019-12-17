@@ -9,14 +9,12 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController //убирает необходимость юзать @ResponseBody
-@CrossOrigin(origins = "http://localhost:4200") //разрешаем все источники
+//@CrossOrigin(origins = "http://localhost:4200") //разрешаем все источники
 public class UserController {
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/") //задаем методам адреса, па которым они будут доступны на фронте
-    public String login(@RequestHeader("Authorization") String auth) {
+    public String login() {
         System.out.println("123321");
-        System.out.println(auth);
         return "auth succesful";
     }
 
