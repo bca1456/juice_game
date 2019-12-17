@@ -47,11 +47,12 @@ import java.util.Arrays;
 @EnableWebSecurity
 @Configuration
 class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         System.out.println("hui");
-        http.cors();
-        http.csrf().disable()
+        http.cors().and()
+            .csrf().disable()
                 .authorizeRequests().antMatchers("/**")
                 .fullyAuthenticated()
                 .and()
@@ -64,6 +65,16 @@ class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("u")
                 .password("{noop}p").roles("USER");
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
     }
 
 //    @Bean
