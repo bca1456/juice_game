@@ -1,6 +1,8 @@
 <div class="login-form">
-    <form class="form_width" method="post">
+    <form class="form_width">
       <h2 class="text-center">Log in</h2>
+      <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+      <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
       <div class="form-group">
         <input [(ngModel)]="userName" type="text" class="form-control" placeholder="Username" name="username">
       </div>

@@ -13,7 +13,11 @@ export class HomeComponent implements OnInit {
   greeting = {};
 
   constructor(private restapiService: RestapiService, private http: HttpClient) {
-    http.get('http://localhost:8080/home').subscribe(data => this.greeting = data);
+    let response = restapiService.getUUID();
+    console.log("===home.component===");
+    console.log(response)
+    console.log("===home.component===");
+    // http.get('http://localhost:8080/home').subscribe(data => this.greeting = data);
   }
 
   //authenticated() { return this.loginService.authenticated; }

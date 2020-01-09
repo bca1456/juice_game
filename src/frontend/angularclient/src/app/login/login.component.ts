@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RestapiService} from "../service/restapi.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,22 +11,36 @@ export class LoginComponent implements OnInit {
 
   userName: string;
   password: string;
+  successMessage: string;
+  invalidLogin = false;
+  loginSuccess = false;
+  errorMessage = "fuck u";
 
-  constructor(private restapiService: RestapiService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private restapiService: RestapiService) {
   }
 
   doLogin(){
-    let response = this.restapiService.login(this.userName, this.password);
-    console.log("===login.component====");
-    console.log(this.userName);
-    console.log(this.password);
-    console.log("===login.component====");
-    response.subscribe(data=>{
-      console.log(data);
-    })
+    this.restapiService.login(this.userName, this.password).subscribe((result) =>{
+      this.invalidLogin = false;
+      this.loginSuccess = true;
+      this.successMessage = 'Login Successful.';
+      this.router.navigate(['/home']);
+    }, (errorMsg) => {
+      this.invalidLogin = true;
+      this.loginSuccess = false;
+      // this.errorMessage = errorMsg;
+    });
+    // console.log("===login.component====");
+    // console.log(this.userName);
+    // console.log(this.password);
+    // console.log("===login.component====");
+    // console.log("response.subscribe: " + response);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    sessionStorage.setItem('token', '');
   }
 
 }
