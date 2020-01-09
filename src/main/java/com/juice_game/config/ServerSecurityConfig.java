@@ -11,6 +11,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @EnableWebSecurity
 @Configuration
@@ -19,8 +22,7 @@ class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         System.out.println("hui");
-        http.cors()
-            .and()
+        http
         .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( HttpMethod.OPTIONS, "/**")
@@ -41,6 +43,7 @@ class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("u")
                 .password("{noop}p").roles("USER");
     }
+
 
 //    @Bean
 //    CorsConfigurationSource corsConfigurationSource() {

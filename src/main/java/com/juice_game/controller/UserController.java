@@ -13,12 +13,12 @@ import java.util.Map;
 import java.util.UUID;
 
 
-@CrossOrigin(origins = "http://localhost:4200") //разрешаем источник фронта
+//@CrossOrigin(origins = "http://localhost:4200") //разрешаем источник фронта
 @RestController //убирает необходимость юзать @ResponseBody
 @RequestMapping("/api/v1")
 public class UserController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET) //задаем методам адреса, па которым они будут доступны на фронте
+    @RequestMapping("/") //задаем методам адреса, па которым они будут доступны на фронте
     public String login() {
         System.out.println("123321");
         return "auth succesful";
