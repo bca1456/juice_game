@@ -8,12 +8,12 @@ import {throwError} from "rxjs";
 })
 export class RestapiService {
 
-  USER_NAME_SESSION = 'lul';
+  USER_NAME_SESSION = 'authenticated_user';
   username: String;
   password: String;
 
   // Base url
-  baseUrl = 'http://localhost:8080/api/v1/';
+  public baseUrl = 'http://localhost:8080/api/v1/';
 
   constructor(private http: HttpClient) { }
 
@@ -23,21 +23,26 @@ export class RestapiService {
   ;
 
   login(username: String, password: String) {
-    return this.http.get(this.baseUrl ,
-      { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map((res) => {
-      this.username = username;
-      this.password = password;
-      console.log(this.username + " " + this.password);
-      this.registerSuccessfulLogin(username, password);
-    }));
+    let response = this.http.get(this.baseUrl ,
+  { headers:
+              { Authorization: this.createBasicAuthToken(username, password) }
+          });
+    this.username = username;
+    this.password = password;
+    // console.log(this.username + " " + this.password);
+    this.registerSuccessfulLogin(username);
+    // console.log("restapi login");
+    // console.log( response);
+    return response;
   }
 
   createBasicAuthToken(username: String, password: String) {
-    return 'Basic ' + window.btoa(username + ":" + password)
+    // console.log('Basic ' + window.btoa(username + ":" + password));
+    return 'Basic ' + window.btoa(username + ":" + password);
   }
 
-  registerSuccessfulLogin(username, password) {
-    sessionStorage.setItem(this.USER_NAME_SESSION, username)
+  registerSuccessfulLogin(username) {
+    sessionStorage.setItem(this.USER_NAME_SESSION, username);
   }
 
   logout() {

@@ -12,6 +12,8 @@ import bootstrap from "bootstrap";
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import {RestapiService} from "./service/restapi.service";
+import {HttpinterceptorService} from "./httpinterceptor.service";
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import {RestapiService} from "./service/restapi.service";
     AppFooterComponent,
     HomeComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,11 @@ import {RestapiService} from "./service/restapi.service";
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [RestapiService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpinterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

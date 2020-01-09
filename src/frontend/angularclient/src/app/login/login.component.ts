@@ -22,16 +22,17 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin(){
-    this.restapiService.login(this.userName, this.password).subscribe((result) =>{
+    let response = this.restapiService.login(this.userName, this.password).subscribe(() =>{
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
-      this.router.navigate(['/home']);
+      this.router.navigateByUrl(this.restapiService.baseUrl + '/home');
     }, (errorMsg) => {
       this.invalidLogin = true;
       this.loginSuccess = false;
       // this.errorMessage = errorMsg;
     });
+    console.log(response);
     // console.log("===login.component====");
     // console.log(this.userName);
     // console.log(this.password);
