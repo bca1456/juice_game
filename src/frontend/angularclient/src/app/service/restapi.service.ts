@@ -42,23 +42,23 @@ export class RestapiService {
   }
 
   registerSuccessfulLogin(username) {
-    sessionStorage.setItem(this.USER_NAME_SESSION, username);
+    localStorage.setItem(this.USER_NAME_SESSION, username);
   }
 
   logout() {
-    sessionStorage.removeItem(this.USER_NAME_SESSION);
+    localStorage.removeItem(this.USER_NAME_SESSION);
     this.username = null;
     this.password = null;
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION);
+    let user = localStorage.getItem(this.USER_NAME_SESSION);
     if (user === null) return false;
     return true
   }
 
   getLoggedInUserName() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION);
+    let user = localStorage.getItem(this.USER_NAME_SESSION);
     if (user === null) return '';
     return user
   }
