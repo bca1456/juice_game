@@ -1,11 +1,10 @@
 <h1>Greeting</h1>
-<!--div [hidden]="!authenticated()">
-  <p>The ID is {{greeting.id}}</p>
-  <p>The content is {{greeting.content}}</p>
+<div *ngIf="!isLoggedIn">
+  <p>Need to LogIn</p>
 </div>
-<div [hidden]="authenticated()">
-  <p>Login to see your greeting</p>
-</div-->
-<li>
-  <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=doLogout()>Logout</a>
-</li>
+<div *ngIf="isLoggedIn">
+  <p>U r krasav4ik</p>
+</div>
+<!--li>
+  <a *ngIf="isLoggedIn" class="nav-link" href="/" (click)=doLogout()>Logout</a>
+</li-->

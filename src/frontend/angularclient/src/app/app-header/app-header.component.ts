@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RestapiService} from "../service/restapi.service";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppHeaderComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn = false;
+
+  constructor(private restapiService: RestapiService) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.restapiService.isUserLoggedIn();
+    console.log('app-header -> isLoggedIn: ' + this.isLoggedIn);
   }
 
+  doLogout() {
+    this.restapiService.logout();
+  }
 }

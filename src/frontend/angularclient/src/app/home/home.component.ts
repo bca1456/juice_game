@@ -29,10 +29,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.restapiService.isUserLoggedIn();
-    console.log('menu ->' + this.isLoggedIn);
+    console.log('menu -> isLoggedIn: ' + this.isLoggedIn);
   }
 
-  doLogout() {
-    this.restapiService.logout();
-  }
+
 }
