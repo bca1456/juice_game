@@ -38,7 +38,7 @@ export class RestapiService {
 
   createBasicAuthToken(username: String, password: String) {
     // console.log('Basic ' + window.btoa(username + ":" + password));
-    return 'Basic ' + window.btoa(username + ":" + password);
+    return 'Basic ' + btoa(username + ":" + password);
   }
 
   registerSuccessfulLogin(username) {

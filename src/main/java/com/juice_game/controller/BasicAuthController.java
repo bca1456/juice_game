@@ -11,6 +11,6 @@ public class BasicAuthController {
 
     @RequestMapping(path = "/basicauth")
     public String basicAuth(){
-        return "Authentificated";
+        return "Authenticated";
     }
 }

@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import {RestapiService} from "./service/restapi.service";
 import {HttpinterceptorService} from "./httpinterceptor.service";
 import { LogoutComponent } from './logout/logout.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LogoutComponent } from './logout/logout.component';
     HomeComponent,
     LoginComponent,
     LogoutComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
