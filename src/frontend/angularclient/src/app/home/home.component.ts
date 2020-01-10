@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {RestapiService} from "../service/restapi.service";
+import {AuthService} from "../service/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn = false;
 
-  constructor(private restapiService: RestapiService,
+  constructor(private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router) {
     // let response = restapiService.getUUID();
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   //authenticated() { return this.loginService.authenticated; }
 
   ngOnInit() {
-    this.isLoggedIn = this.restapiService.isUserLoggedIn();
+    this.isLoggedIn = this.authService.isUserLoggedIn();
     console.log('menu -> isLoggedIn: ' + this.isLoggedIn);
   }
 

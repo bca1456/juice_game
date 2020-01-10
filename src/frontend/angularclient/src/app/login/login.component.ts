@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RestapiService} from "../service/restapi.service";
+import {AuthService} from "../service/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -18,17 +18,17 @@ export class LoginComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private restapiService: RestapiService) {
+              private authService: AuthService) {
   }
 
   doLogin(){
-    let response = this.restapiService.login(this.userName, this.password)
+    let response = this.authService.login(this.userName, this.password)
       .subscribe(
   data =>{
           this.invalidLogin = false;
           this.loginSuccess = true;
           this.successMessage = 'Login Successful.';
-          this.router.navigateByUrl(this.restapiService.baseUrl + '/home');
+          this.router.navigateByUrl(this.authService.baseUrl + '/home');
         },
   error=> {
           this.invalidLogin = true;
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    sessionStorage.setItem('token', '');
+    localStorage.setItem('token', '');
   }
 
 }

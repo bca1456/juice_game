@@ -11,7 +11,7 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import bootstrap from "bootstrap";
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import {RestapiService} from "./service/restapi.service";
+import {AuthService} from "./service/auth.service";
 import {HttpinterceptorService} from "./httpinterceptor.service";
 import { LogoutComponent } from './logout/logout.component';
 import { NotFoundComponent } from './not-found/not-found.component';

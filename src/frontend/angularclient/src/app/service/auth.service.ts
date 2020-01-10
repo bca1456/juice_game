@@ -6,7 +6,7 @@ import {throwError} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class RestapiService {
+export class AuthService {
 
   USER_NAME_SESSION = 'authenticated_user';
   username: String;
@@ -31,7 +31,7 @@ export class RestapiService {
     this.password = password;
     // console.log(this.username + " " + this.password);
     this.registerSuccessfulLogin(username);
-    // console.log("restapi login");
+    // console.log("auth login");
     // console.log( response);
     return response;
   }

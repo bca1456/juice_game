@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {RestapiService} from "./service/restapi.service";
+import {AuthService} from "./service/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpinterceptorService implements HttpInterceptor{
 
-  constructor(private restapiService: RestapiService) { }
+  constructor(private authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.restapiService.isUserLoggedIn()){
+    if (this.authService.isUserLoggedIn()){
       const authReq = req.clone({
         headers: new HttpHeaders({
          // 'Content-Type': 'application/json',
-          'Authorization' : `Basic ${btoa(this.restapiService.username + ':' + this.restapiService.password)}`
+          'Authorization' : `Basic ${btoa(this.authService.username + ':' + this.authService.password)}`
         })
       });
       return next.handle(authReq);
