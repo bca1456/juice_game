@@ -15,22 +15,10 @@ import java.util.UUID;
 
 //@CrossOrigin(origins = "http://localhost:4200") //разрешаем источник фронта
 @RestController //убирает необходимость юзать @ResponseBody
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
-    @RequestMapping("/") //задаем методам адреса, па которым они будут доступны на фронте
-    public String login() {
-        System.out.println("123321");
-        return "auth succesful";
-    }
 
-    @GetMapping("/home")
-    public Map<String, Object> getUUID(){
-        Map<String, Object> model = new HashMap<>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("message", "mess");
-        return model;
-    }
 
     @RequestMapping("/user")
     public Principal user(HttpServletRequest request) {

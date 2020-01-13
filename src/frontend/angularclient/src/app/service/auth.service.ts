@@ -12,27 +12,30 @@ export class AuthService {
   username: String;
   password: String;
 
+
   // Base url
-  public baseUrl = 'http://localhost:8080/api/v1/';
+  public baseUrl = 'http://localhost:8080/api/v1/auth';
 
   constructor(private http: HttpClient) { }
 
   // Http Headers
-  httpOptions = new HttpHeaders({
-    } )
-  ;
+  // httpOptions = new HttpHeaders({
+  //   } )
+  // ;
 
   login(username: String, password: String) {
-    let response = this.http.get(this.baseUrl ,
-  { headers:
-              { Authorization: this.createBasicAuthToken(username, password) }
-          });
+    let response = this.http
+                    .get(this.baseUrl ,
+                {
+                          headers:
+                             { Authorization: this.createBasicAuthToken(username, password) }
+                        });
     this.username = username;
     this.password = password;
     // console.log(this.username + " " + this.password);
     this.registerSuccessfulLogin(username);
     // console.log("auth login");
-    // console.log( response);
+     console.log("AuthService: " +  response);
     return response;
   }
 

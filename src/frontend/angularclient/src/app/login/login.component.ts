@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../service/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -16,26 +17,31 @@ export class LoginComponent implements OnInit {
   loginSuccess = false;
   errorMessage = "fuck u";
 
+  response: Subscription;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService) {
   }
 
   doLogin(){
-    let response = this.authService.login(this.userName, this.password)
+    this.response = this.authService.login(this.userName, this.password)
       .subscribe(
   data =>{
-          this.invalidLogin = false;
-          this.loginSuccess = true;
-          this.successMessage = 'Login Successful.';
-          this.router.navigateByUrl(this.authService.baseUrl + '/home');
+
         },
   error=> {
           this.invalidLogin = true;
           this.loginSuccess = false;
-          console.log(error);
+          console.log("error: " + error);
+        },
+        () => {
+          this.invalidLogin = false;
+          this.loginSuccess = true;
+          this.successMessage = 'Login Successful.';
+          this.router.navigate(['/home']);
         });
-    console.log(response);
+    console.log(this.response);
     // console.log("===login.component====");
     // console.log(this.userName);
     // console.log(this.password);
@@ -45,6 +51,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('token', '');
+  }
+
+  ngOnDestroy() {
+    this.response.unsubscribe();
   }
 
 }
