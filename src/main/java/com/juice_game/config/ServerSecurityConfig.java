@@ -2,6 +2,7 @@ package com.juice_game.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,29 +21,32 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("u").password("{noop}p").roles("USER").and()
+                .withUser("a").password("{noop}d").roles("USER", "ADMIN");
+    }
+
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        System.out.println("hui");
         http
-        .csrf().disable()
+            .cors() .and()
+            .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( HttpMethod.OPTIONS, "/**")
-                .permitAll().anyRequest().authenticated()
+                .antMatchers("/api").hasRole("ADMIN")
+                    .anyRequest().authenticated()
 
 //                .anyRequest().authenticated()
                 //.antMatchers("/*").hasRole("USER")
             .and()
+                //.formLogin()
                 .httpBasic()
-//            .and()
-//                .csrf().disable()
+
                 ;
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("u")
-                .password("{noop}p").roles("USER");
-    }
+
 
 
 //    @Bean

@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import {LogoutComponent} from "./logout/logout.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {CrudComponent} from "./crud/crud.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
+  { path: 'crud', component: CrudComponent},
   { path: '**', component: NotFoundComponent}
 ];
 

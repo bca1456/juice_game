@@ -15,6 +15,7 @@ import {AuthService} from "./service/auth.service";
 import {HttpinterceptorService} from "./httpinterceptor.service";
 import { LogoutComponent } from './logout/logout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CrudComponent } from './crud/crud.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LoginComponent,
     LogoutComponent,
     NotFoundComponent,
+    CrudComponent,
   ],
   imports: [
     BrowserModule,

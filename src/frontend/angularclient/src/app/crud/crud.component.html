@@ -1,0 +1,55 @@
+<button class="btn btn-warning float-right" routerLink="/addbook">add</button>
+<table class="table table-bordered">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let book of books">
+    <ng-template [ngTemplateOutlet]="loadTemplate(book)"
+                 [ngTemplateOutletContext]="{ $implicit:book}">
+      <!-- Свойство ngTemplateOutletContext для передачи контекста в шаблон. С помощью параметра $implicit задается передаваемый объект. В данном случае это объект book. -->
+    </ng-template>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Шаблон для чтения -->
+<ng-template #readOnlyTemp let-book>
+  <td>{{ book.id }}</td>
+  <td>{{ book.name }}</td>
+  <td>
+    <!--button class="btn btn-info" (click)="updateBook(book)">update</button>
+    <button class="btn btn-danger" (click)="deleteBook(book)">del</button-->
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<!--ng-template #editTemp>
+  <td>
+    <label>
+      <input type="text" [(ngModel)]="editedBook.id" readonly disabled class="form-control" />
+    </label>
+  </td>
+  <td>
+    <label>
+      <input type="text" [(ngModel)]="editedBook.name" class="form-control" />
+    </label>
+  </td>
+  <td>
+    <input type="button" value="Сохранить" (click)="saveBook()" class="btn btn-success" />
+    <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+  </td>
+
+</ng-template-->
+
+<!-- Шаблон добавления книги -->
+<!--ng-template #addBookTemp>
+  <modal id="addBookModal" class="hhidden">
+    Dialog Header
+    <button (click)="closeDialog()">Close Dialog</button>
+  </modal>
+</ng-template-->

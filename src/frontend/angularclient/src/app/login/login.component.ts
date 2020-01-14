@@ -39,9 +39,11 @@ export class LoginComponent implements OnInit {
           this.invalidLogin = false;
           this.loginSuccess = true;
           this.successMessage = 'Login Successful.';
-          this.router.navigate(['/home']);
+          // this.router.navigate(['home']).then(() => {
+          //   window.location.reload();
+          // });
         });
-    console.log(this.response);
+    //console.log(this.response);
     // console.log("===login.component====");
     // console.log(this.userName);
     // console.log(this.password);
