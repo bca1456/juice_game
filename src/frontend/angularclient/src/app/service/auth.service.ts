@@ -9,9 +9,9 @@ import {throwError} from "rxjs";
 export class AuthService {
 
   USER_NAME_SESSION = 'authenticated_user';
+  PASSWORD_SESSION = 'authenticated_user_password';
   username: String;
   password: String;
-
 
   // Base url
   public baseUrl = 'http://localhost:8080/api/v1/auth';
@@ -33,7 +33,7 @@ export class AuthService {
     this.username = username;
     this.password = password;
     // console.log(this.username + " " + this.password);
-    this.registerSuccessfulLogin(username);
+    this.registerSuccessfulLogin(username, password);
     // console.log("auth login");
      console.log("AuthService: " +  response);
     return response;
@@ -44,12 +44,14 @@ export class AuthService {
     return 'Basic ' + btoa(username + ":" + password);
   }
 
-  registerSuccessfulLogin(username) {
+  registerSuccessfulLogin(username, password) {
     localStorage.setItem(this.USER_NAME_SESSION, username);
+    localStorage.setItem(this.PASSWORD_SESSION, password);
   }
 
   logout() {
     localStorage.removeItem(this.USER_NAME_SESSION);
+    localStorage.removeItem(this.PASSWORD_SESSION);
     this.username = null;
     this.password = null;
   }
@@ -64,6 +66,12 @@ export class AuthService {
     let user = localStorage.getItem(this.USER_NAME_SESSION);
     if (user === null) return '';
     return user
+  }
+
+  getLoggedInUsernamePassword(){
+    let password = localStorage.getItem(this.PASSWORD_SESSION);
+    if (password === null) return '';
+    return password
   }
 
 
