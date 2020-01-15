@@ -37,6 +37,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getAll() {
+//        System.out.println("Serviceimpl getAll");
+//        System.out.println(bookRepository.findAll());
         return (List<Book>) bookRepository.findAll();
     }
 }

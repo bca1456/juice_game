@@ -19,6 +19,9 @@ public class BookController {
 
     @RequestMapping("/books")
     public List<Book> getAll(){
+        System.out.println("================");
+        bookService.getAll().forEach(System.out::println);
+        System.out.println("================");
         return this.bookService.getAll();
     }
 }
