@@ -1,5 +1,7 @@
 package com.juice_game;
 
+import com.juice_game.crud.repos.BookRepository;
+import com.juice_game.crud.service.BookService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,10 +22,16 @@ public class JuiceGameApplication {
     }
 
     @Bean
-    CommandLineRunner init() {
+    CommandLineRunner init(BookService bookService, BookRepository bookRepository) {
         return args -> {
-            System.out.println("sdfsdfsdfsdfdsfsdf");
-            System.out.println("sdfsdfsdfsdfwddds fsdf");
+//            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
+//                Book book = new Book(name);
+//                bookRepository.save(book);
+//            });
+            System.out.println("====main====");
+            System.out.println(bookService.getAll());
+            bookRepository.findAll().forEach(System.out::println);
+            System.out.println("====main====");
         };
     }
 

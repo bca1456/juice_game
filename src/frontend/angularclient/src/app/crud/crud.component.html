@@ -2,8 +2,10 @@
 <table class="table table-bordered">
   <thead class="thead-dark">
   <tr>
-    <th scope="col">#</th>
+    <th scope="col">id</th>
     <th scope="col">Name</th>
+    <th scope="col">Author</th>
+    <th scope="col">Pages</th>
     <th scope="col"></th>
   </tr>
   </thead>
@@ -21,9 +23,11 @@
 <ng-template #readOnlyTemp let-book>
   <td>{{ book.id }}</td>
   <td>{{ book.name }}</td>
+  <td> {{ book.author }}</td>
+  <td> {{ book.quantityOfPages }}</td>
   <td>
-    <!--button class="btn btn-info" (click)="updateBook(book)">update</button>
-    <button class="btn btn-danger" (click)="deleteBook(book)">del</button-->
+    <button class="btn btn-info" (click)="updateBook(book)">update</button>
+    <button class="btn btn-danger" (click)="deleteBook(book)">del</button>
   </td>
 </ng-template>
 
