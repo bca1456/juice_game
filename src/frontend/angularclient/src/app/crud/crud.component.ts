@@ -44,4 +44,43 @@ export class CrudComponent implements OnInit {
     }
   }
 
+  updateBook(book: Book){
+    this.editedBook = book;
+  }
+
+  // сохраняем книгу
+  saveBook() {
+    if (this.isNewRecord) {
+      // добавляем книгу
+      this.crudService.createBook(this.editedBook).subscribe(data => {
+        this.fetchData();
+      });
+      this.isNewRecord = false;
+      this.editedBook = null;
+    } else {
+      // изменяем книгу
+      this.crudService.updateBook(this.editedBook.id, this.editedBook).subscribe(data => {
+        this.fetchData();
+      });
+      this.editedBook = null;
+    }
+  }
+
+  // отмена редактирования
+  cancel() {
+    // если отмена при добавлении, удаляем последнюю запись
+    if (this.isNewRecord) {
+      this.books.pop();
+      this.isNewRecord = false;
+    }
+    this.editedBook = null; //обнуляем изменяемую книгу
+    this.fetchData(); //получаем заново список
+  }
+
+  //удаление книги
+  deleteBook(book: Book) {
+    this.crudService.deleteBookById(book.id).subscribe(() => {
+      this.fetchData();
+    });
+  }
 }

@@ -7,12 +7,12 @@ import {Book} from "../../model/crud/book";
 })
 export class CrudService {
 
-  private crudUrl = 'http://localhost:8080/api/v1/crud/';
+  private crudUrl = 'http://localhost:8080/api/v1/crud/books';
 
   constructor(private http: HttpClient) { }
 
   public findAllBooks(){
-    return this.http.get(this.crudUrl + "books");
+    return this.http.get(this.crudUrl);
   }
 
   public createBook(book: Book){
