@@ -21,8 +21,11 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.5",
     "@types/chart.js": "^2.9.3",
     "bootstrap": "^4.4.1",
+    "popper.js": "^1.16.0",
+    "eslint": "^6",
     "jquery": "^3.4.1",
     "ng-terminal": "^2.3.0",
     "popper": "^1.0.1",
@@ -32,7 +35,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.22",
+    "@angular-devkit/build-angular": "^0.803.23",
     "@angular/cli": "^8.3.20",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",

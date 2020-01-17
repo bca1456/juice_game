@@ -1,6 +1,8 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {CrudService} from "../service/crud/crud.service";
 import {Book} from "../model/crud/book";
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 
 
 @Component({
@@ -15,17 +17,34 @@ export class CrudComponent implements OnInit {
   @ViewChild('readOnlyTemp', {static: false}) readOnlyTemp: TemplateRef<any>; //шаблон онли для просмотра
   @ViewChild('editTemp', {static: false}) editTemp: TemplateRef<any>; //шаблон для редактирования
 
+  book: Book = new Book();
   books: Array<Book>; //для хранения списка книг
   editedBook: Book; //изменяемая книга
   isNewRecord: boolean;
 
-  constructor(private crudService: CrudService) {
+  addBookString: FormControl = new FormControl('q');
+  addBookFormGroup: FormGroup;
+
+  constructor(private crudService: CrudService,
+              private modalService: NgbModal,
+              private formBuilder: FormBuilder) {
     this.books = new Array<Book>();
   }
 
   //при загрузке врубаем получение всех книг
   ngOnInit() {
     this.fetchData();
+    this.addBookFormGroup = this.formBuilder.group({
+      name: [null, [Validators.required,
+                    Validators.minLength(1),
+                    Validators.pattern(/^[A-z]/)]],
+      author: [null, [Validators.required,
+                      Validators.minLength(1),
+                      Validators.pattern(/^[A-z]/)]],
+      quantityOfPages: [null, [Validators.required,
+                                Validators.min(1),
+                                Validators.pattern(/^[0-9]/)]]
+    })
   }
 
   //получаем все книги из базы
@@ -45,6 +64,7 @@ export class CrudComponent implements OnInit {
   }
 
   updateBook(book: Book){
+    this.isNewRecord = false;
     this.editedBook = book;
   }
 
@@ -83,4 +103,27 @@ export class CrudComponent implements OnInit {
       this.fetchData();
     });
   }
+
+  //работа с модальным окном добавления
+  openBookModal(content) {
+    this.isNewRecord = true;
+    this.modalService.open(content, {backdropClass: 'light-blue-backdrop'});
+  }
+
+  isControlInvalid(controlName: string): boolean{
+    const control = this.addBookFormGroup.controls[controlName];
+
+    return control.invalid && control.touched;
+  }
+
+  onSubmit(){
+    this.saveBook();
+    //this.crudService.createBook(this.book);
+    console.log(this.book);
+    //this.modalService.dismissAll();
+  }
+
+  // submitNewBook(form: NgForm){
+  //   this.crudService.createBook(this.book)
+  // }
 }
