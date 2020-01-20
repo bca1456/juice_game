@@ -34,7 +34,9 @@ class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
             .cors() .and()
             .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api").hasRole("ADMIN")
+                .antMatchers("/api")./*hasRole("ADMIN").*/
+                permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
+                .permitAll()
                     .anyRequest().authenticated()
 
 //                .anyRequest().authenticated()

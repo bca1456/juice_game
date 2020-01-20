@@ -107,7 +107,7 @@ export class CrudComponent implements OnInit {
   //работа с модальным окном добавления
   openBookModal(content) {
     this.isNewRecord = true;
-    this.modalService.open(content, {backdropClass: 'light-blue-backdrop'});
+    this.modalService.open(content);
   }
 
   isControlInvalid(controlName: string): boolean{

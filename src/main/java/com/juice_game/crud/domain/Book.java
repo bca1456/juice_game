@@ -10,13 +10,10 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-   // @Column(name = "name")
     private String name;
 
-   // @Column(name = "author")
     private String author;
 
-   // @Column(name = "quantityOfPages")
     private int quantityOfPages;
 
     public Book(){
