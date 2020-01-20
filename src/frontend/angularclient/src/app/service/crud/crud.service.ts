@@ -16,7 +16,7 @@ export class CrudService {
   }
 
   public createBook(book: Book){
-    return this.http.post<Book>(this.crudUrl, book);
+    return this.http.post(this.crudUrl, book);
   }
 
   public updateBook(id: number, book: Book){

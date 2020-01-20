@@ -44,19 +44,22 @@
     </label>
   </td>
   <td>
+    <label>
+      <input type="text" [(ngModel)]="editedBook.author" class="form-control" />
+    </label>
+  </td>
+  <td>
+    <label>
+      <input type="text" [(ngModel)]="editedBook.quantityOfPages" class="form-control" />
+    </label>
+  </td>
+  <td>
     <input type="button" value="Сохранить" (click)="saveBook()" class="btn btn-success" />
     <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
   </td>
 
 </ng-template>
 
-<!-- Шаблон добавления книги -->
-<!--ng-template #addBookTemp>
-  <modal id="addBookModal" class="hhidden">
-    Dialog Header
-    <button (click)="closeDialog()">Close Dialog</button>
-  </modal>
-</ng-template-->
 
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -69,16 +72,15 @@
     <form class="form-horizontal" [formGroup]="addBookFormGroup" (ngSubmit)="onSubmit()">
       <label>name</label>
       <label>
-        <input class="form-control" formControlName="name"/>
+        <input class="form-control" [(ngModel)]="book.name" formControlName="name"/>
       </label>
       <div class="error" *ngIf="isControlInvalid('name')">
         Only eng alphabet!
       </div>
       <br/>
-
       <label>author</label>
       <label>
-        <input class="form-control" formControlName="author"/>
+        <input class="form-control" [(ngModel)]="book.author" formControlName="author"/>
       </label>
       <div class="error" *ngIf="isControlInvalid('author')">
         Only eng alphabet!
@@ -86,10 +88,10 @@
       <br/>
       <label>quantityOfPages</label>
       <label>
-        <input class="form-control" formControlName="quantityOfPages"/>
+        <input class="form-control" [(ngModel)]="book.quantityOfPages" formControlName="quantityOfPages"/>
       </label>
       <div class="error" *ngIf="isControlInvalid('quantityOfPages')">
-        Age min value is 1!
+        quantityOfPages min value is 1!
       </div>
       <br/>
 

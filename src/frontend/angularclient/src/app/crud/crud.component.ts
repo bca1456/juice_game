@@ -72,7 +72,7 @@ export class CrudComponent implements OnInit {
   saveBook() {
     if (this.isNewRecord) {
       // добавляем книгу
-      this.crudService.createBook(this.editedBook).subscribe(data => {
+      this.crudService.createBook(this.book).subscribe(data => {
         this.fetchData();
       });
       this.isNewRecord = false;
