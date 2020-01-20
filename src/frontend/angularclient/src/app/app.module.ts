@@ -17,6 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CrudComponent } from './crud/crud.component';
 import {CrudService} from "./service/crud/crud.service";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HeroComponent } from './game/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LogoutComponent,
     NotFoundComponent,
     CrudComponent,
+    HeroComponent,
   ],
   imports: [
     BrowserModule,
