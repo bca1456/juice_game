@@ -26,7 +26,7 @@
     "bootstrap": "^4.4.1",
     "popper.js": "^1.16.0",
     "eslint": "^6",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-terminal": "^2.3.0",
     "popper": "^1.0.1",
     "rxjs": "^6.5.3",
